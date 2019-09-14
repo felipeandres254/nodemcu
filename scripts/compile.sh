@@ -34,7 +34,7 @@ fi
 
 # Create sketch files
 name="nodemcu-${SKETCH,,}"
-rm -rf "$DIR/.output"
+rm -rf "$DIR/.output/$name" "$DIR/.output/$name.ino.bin"
 mkdir -p "$DIR/.output/$name"
 cp "$DIR/src/main.ino" "$DIR/.output/$name/$name.ino"
 cp "$DIR/examples/$SKETCH/sketch.ino" "$DIR/.output/$name/proxy.ino"
@@ -64,7 +64,7 @@ cd "$LOCALAPPDATA"
 file=$(find Temp/arduino-sketch-*/$name.ino.bin)
 if [ "$UPLOAD" == "--upload" ]; then
     curl -F "image=@$file" 192.168.43.228/update
-    rm -rf "$DIR/.output"
+    rm -rf "$DIR/.output/$name"
 else
     mv $file "$DIR/.output"
 fi
