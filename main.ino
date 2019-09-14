@@ -4,19 +4,21 @@
 #include <ESP8266mDNS.h>
 #include <ESP8266HTTPUpdateServer.h>
 
-#ifndef STASSID
-#define STASSID "YOUR-SSID"
-#define STAPSK  "YOUR-PASSWORD"
+#ifndef WIFI_SSID
+#define WIFI_SSID "YOUR-SSID"
+#define WIFI_PSK  "YOUR-PASSWORD"
 #endif
 
 const char* host = "nodemcu";
-const char* ssid = STASSID;
-const char* password = STAPSK;
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PSK;
 
 ESP8266WebServer httpServer(80);
 ESP8266HTTPUpdateServer httpUpdater;
 
 void setup() {
+    NodeMCU_setup();
+
     Serial.begin(115200);
     Serial.println();
     Serial.println("Booting Sketch...");
@@ -25,7 +27,7 @@ void setup() {
 
     while (WiFi.waitForConnectResult() != WL_CONNECTED) {
         WiFi.begin(ssid, password);
-        Serial.println("WiFi failed, retrying.");
+        Serial.println("WiFi failed, retrying...");
     }
 
     MDNS.begin(host);
@@ -40,4 +42,6 @@ void setup() {
 void loop() {
     httpServer.handleClient();
     MDNS.update();
+
+    NodeMCU_loop();
 }
