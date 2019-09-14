@@ -71,4 +71,4 @@ fi
 
 # Cleanup
 cd "$LOCALAPPDATA"
-rm -rf Arduino15/ Temp/arduino/
+rm -rf Arduino15/ Temp/arduino*/
