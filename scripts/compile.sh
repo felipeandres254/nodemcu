@@ -1,4 +1,6 @@
 #!/bin/bash
+# Usage: bash compile.sh <sketch> [--upload]
+
 HOSTNAME="NodeMCU OTA"
 echo -e "\e[1;34m[$HOSTNAME] \e[0mInitializing..."
 
