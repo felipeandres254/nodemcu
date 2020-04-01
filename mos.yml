@@ -1,0 +1,56 @@
+name: nodemcu
+author: Andrés Felipe Torres <dev@felipeandres254.io>
+description: Base IoT framework for NodeMCU
+version: 1.0.0
+platform: esp8266
+
+manifest_version: 2017-05-18
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+config_schema:
+  - ["wifi.ap.enable", false]
+  - ["wifi.sta.enable", true]
+  - ["wifi.sta.ssid", "WIFI_SSID"]
+  - ["wifi.sta.pass", "WIFI_PASS"]
+  - ["devtab.dev0.name", "web"]
+  - ["devtab.dev0.type", "part"]
+  - ["devtab.dev0.opts", '{"dev": "sfl0", "offset": 0x300000, "size": 0x10000}']
+  - ["fstab.fs0.dev", "web"]
+  - ["fstab.fs0.type", "SPIFFS"]
+  - ["fstab.fs0.opts", '{"bs": 4096, "ps": 128, "es": 4096}']
+  - ["fstab.fs0.path", "/web"]
+  - ["fstab.fs0.create", true]
+  - ["http.document_root", "/web"]
+
+sources:
+  - src
+
+filesystem:
+  - fs
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/mjs
+  # Basic bundle
+  - origin: https://github.com/mongoose-os-libs/aws
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/core
+  - origin: https://github.com/mongoose-os-libs/cron
+  - origin: https://github.com/mongoose-os-libs/fstab
+  - origin: https://github.com/mongoose-os-libs/http-server
+  - origin: https://github.com/mongoose-os-libs/provision
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/shadow
+  - origin: https://github.com/mongoose-os-libs/sntp
+  # ESP8266 bundle
+  - origin: https://github.com/mongoose-os-libs/i2c
+  - origin: https://github.com/mongoose-os-libs/pwm
+  - origin: https://github.com/mongoose-os-libs/rpc-loopback
+  - origin: https://github.com/mongoose-os-libs/rpc-mqtt
+  - origin: https://github.com/mongoose-os-libs/rpc-service-wifi
+  - origin: https://github.com/mongoose-os-libs/spi
+  - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+  - origin: https://github.com/mongoose-os-libs/wifi

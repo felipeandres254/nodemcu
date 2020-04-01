@@ -1,0 +1,17 @@
+#!/bin/bash
+
+[[ -z $1 ]] && exit 1
+grep "\[$1\]" devices/config &>/dev/null
+if [[ $? -ne 0 ]]; then exit 1; fi
+
+device=$1
+endpoint=$(grep -A 2 "\[$1\]" devices/config | grep endpoint | sed -E 's/\s*endpoint = (.*)\s*/\1/')
+
+port="--port mqtts://$endpoint/$device"
+cert="--cert-file devices/aws-$device.crt.pem"
+key="--key-file devices/aws-$device.key.pem"
+
+for file in fs/*; do
+    mos $port $cert $key put $file
+done
+mos $port $cert $key call sys.reboot &>/dev/null
