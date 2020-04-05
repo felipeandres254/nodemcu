@@ -23,6 +23,9 @@ config_schema:
   - ["fstab.fs0.path", "/web"]
   - ["fstab.fs0.create", true]
   - ["http.document_root", "/web"]
+  - ["i2c.enable", true]
+  - ["i2c.sda_gpio", 5]
+  - ["i2c.scl_gpio", 4]
 
 sources:
   - src
@@ -46,11 +49,10 @@ libs:
   - origin: https://github.com/mongoose-os-libs/shadow
   - origin: https://github.com/mongoose-os-libs/sntp
   # ESP8266 bundle
-  - origin: https://github.com/mongoose-os-libs/i2c
   - origin: https://github.com/mongoose-os-libs/pwm
   - origin: https://github.com/mongoose-os-libs/rpc-loopback
   - origin: https://github.com/mongoose-os-libs/rpc-mqtt
-  - origin: https://github.com/mongoose-os-libs/rpc-service-wifi
+  - origin: https://github.com/mongoose-os-libs/rpc-service-i2c
   - origin: https://github.com/mongoose-os-libs/spi
   - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
   - origin: https://github.com/mongoose-os-libs/wifi
