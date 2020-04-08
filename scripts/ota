@@ -11,7 +11,11 @@ port="--port mqtts://$endpoint/$device"
 cert="--cert-file devices/aws-$device.crt.pem"
 key="--key-file devices/aws-$device.key.pem"
 
-for file in fs/*; do
+dir="fs/*.js"
+if [[ -n $2 ]] && [[ -d "examples/$2" ]]; then
+    dir="examples/$2/*.js"
+fi
+for file in $dir; do
     mos $port $cert $key put $file
 done
 mos $port $cert $key call sys.reboot &>/dev/null
