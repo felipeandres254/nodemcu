@@ -18,7 +18,7 @@ Example:
    location.href = 'https://app.felipeandres254.io/iot?device=nodemcu-{{ DEVICE_ID }}'
    ```
 
-3. Run `mos build && ./install`
+3. Run `mos build && scripts/install`
 
 # Over-The-Air updates
 
@@ -26,4 +26,10 @@ To make an OTA update make sure the device is connected to WiFi and it's shadow 
 
 1. Edit the filesystem within `fs`. The first file to run is [`init.js`](./fs/init.js).
 
-2. When you are ready, run `./scripts/ota <name>`.
+2. When you are ready, run `scripts/ota <name> --update`.
+
+You can also provide a directory name within the examples folder to this command:
+
+```sh
+$ ./scripts/ota <name> --update <example>
+```
