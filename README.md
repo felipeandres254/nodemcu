@@ -12,10 +12,10 @@ Uses [MongooseOS](https://mongoose-os.com) and [AWS IoT](https://aws.amazon.com/
      - ["wifi.sta.pass", "WIFI_PASS"]
    ```
 
-2. Replace `{{ DEVICE_URL }}` in [index.html](./web/index.html) with an URL to complete with `{{ DEVICE_ID }}`, this last markup will be replaced when executing [`install`](./scripts/install).
-Example:
-   ```js
-   location.href = 'https://app.felipeandres254.io/iot?device=nodemcu-{{ DEVICE_ID }}'
+2. Run the following commands in a WSL environment
+   ```sh
+   $ mos build
+   $ powershell.exe -File "scripts/install.ps1"
    ```
 
 3. Run `mos build && scripts/install`

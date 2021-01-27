@@ -4,3 +4,6 @@ build/
 # Device certificates
 devices/*.crt.pem
 devices/*.key.pem
+
+# Mongoose Executable
+mos.exe
