@@ -18,18 +18,29 @@ Uses [MongooseOS](https://mongoose-os.com) and [AWS IoT](https://aws.amazon.com/
    $ powershell.exe -File "scripts/install.ps1"
    ```
 
-3. Run `mos build && scripts/install`
+## Over-The-Air
 
-# Over-The-Air updates
+To execute an OTA action make sure the device is connected to WiFi and it's shadow is reporting correctly.
+Also, the configuration and certificates must be available in [`devices`](./devices) directory.
 
-To make an OTA update make sure the device is connected to WiFi and it's shadow is reporting correctly. Also, the configuration and certificates must be available in `devices` directory.
+### Mongoose and custom RPC's
 
-1. Edit the filesystem within `fs`. The first file to run is [`init.js`](./fs/init.js).
-
-2. When you are ready, run `scripts/ota <name> --update`.
-
-You can also provide a directory name within the examples folder to this command:
+Run `scripts/ota <name> [rpc]` to execute a Remote Procedure Call.
+This is equivalent to run `mos [rpc]` with a phyisically connected device.
 
 ```sh
-$ ./scripts/ota <name> --update <example>
+$ scripts/ota MY_DEVICE console
+Connecting to tcps://xxxxxxxxxxxxxxxxx.iot.us-east-1.amazonaws.com:8883...
+Subscribed to MY_DEVICE/log
 ```
+
+### Application updates
+
+1. Edit the filesystem within `fs`.
+   Notice that the first file to run is [`init.js`](./fs/init.js) which loads [`main.js`](./fs/main.js).
+
+2. When you are ready, run `scripts/ota <name> --update`.
+   You can also provide a directory name within the examples folder to this command:
+   ```sh
+   $ ./scripts/ota <name> --update <example>
+   ```
