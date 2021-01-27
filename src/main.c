@@ -56,13 +56,21 @@ static void _events_cb(int event, void *data, void *arg) {
             mgos_set_timer(100, 0, _blink_end, NULL);
             sprintf(DEVICE_STATUS, "ONLINE"); shadow_update();
             break;
+        default:
+            shadow_update();
+            break;
     }
     (void)data;
     (void)arg;
 }
 
-static void _crontab_cb(void *data, mgos_cron_id_t id) {
+static void _crontab_shadow(void *arg) {
     shadow_update();
+    (void)arg;
+}
+
+static void _crontab_cb(void *data, mgos_cron_id_t id) {
+    mgos_set_timer(500, 0, _crontab_shadow, NULL);
     (void)data;
     (void)id;
 }

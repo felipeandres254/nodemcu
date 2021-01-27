@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodeMCU</title>
+    <title>NodeMCU {{ DEVICE_ID }}</title>
 
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <img id="loading" src="./loading.svg">
+    <img id="loading" src="loading.svg">
     <script type="text/javascript">
         setTimeout(() => {
-            location.href = '{{ DEVICE_URL }}{{ DEVICE_ID }}'
+            location.href = 'https://app.felipeandres254.io/iot?device=nodemcu-{{ DEVICE_ID }}'
         }, 5000)
     </script>
 </body>
