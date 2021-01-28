@@ -2,9 +2,9 @@
 load('api_timer.js');
 load('api_gpio.js');
 
-let ONBOARD_LED = 2;
+let EXTERNAL_LED = 14;
 
-GPIO.setup_output(ONBOARD_LED, 1);
+GPIO.setup_output(EXTERNAL_LED, 1);
 Timer.set(500, Timer.REPEAT, function() {
-    GPIO.toggle(ONBOARD_LED);
+    GPIO.toggle(EXTERNAL_LED);
 }, null);
